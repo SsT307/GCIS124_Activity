@@ -112,6 +112,7 @@ public class McqsQuestion {
      * the answer given by the user.
      * @param args
      */
+public class Main {
     public static void main(String[] args) {
         /* 
          * We created the question, multiple choice answers, and set the correct answer.
@@ -140,16 +141,20 @@ public class McqsQuestion {
          * method equals.
          */
         String userAns = scanner.nextLine().toUpperCase();
-        if (userAns == "A" || userAns == "B" || userAns == "C") {
-            if (userAns.equals(mcq.getCorrectAnswer())) { // Fixed: Proper string comparison
+        String wrongAns1 = "Nah, loser!";
+        String wrongAns2 = "The correct answer was " + mcq.getCorrectAnswer();
+
+        if (userAns.equals("A") || userAns.equals("B") || userAns.equals("C")) {
+            if (userAns.equals(mcq.getCorrectAnswer())) {
                 System.out.println("YIPPIEEEE You got it!!");
-            } else {
-                System.out.println("Nah, loser! The correct answer was " + mcq.getCorrectAnswer());
+            } else if (userAns.equals("B") || userAns.equals("C")) {
+                System.out.println(wrongAns1 + " " + wrongAns2);
             }
-            } else {
-                System.out.println("Invalid input. Please enter A, B, or C");
+        } else {
+            System.out.println("Invalid input. Please enter A, B, or C");
         }
 
         scanner.close();
+    }
     }
 }
