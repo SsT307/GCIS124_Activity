@@ -2,15 +2,16 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 /*
-*           *           *           *           *           *           *           *           *
-* Students: Shaikha Alhajri, Noora Almidfa, Adeeb Harb
-* Activity 1: In this assignment, we were given the task to create a system in which we give a
-* user some question and have them answer that question from a given array of 3 multiple choice
-* answers. Once the user inputs his/her answer, the system immediatly reveals whether the answer
-* was right or wrong, and if it was wrong, it would also reveal the right answer.
-* We were also asked to create a UML for this project before starting, which is uploaded along with
-* this file.
-*           *           *           *           *           *           *           *           *
+ *           *           *           *           *           *           *           *           *
+ * Activity 1, Group 6
+ * Students: Shaikha Alhajri, Noora Almidfa, Adeeb Harb
+ * In this assignment, we were given the task to create a system in which we give a
+ * user some question and have them answer that question from a given array of 3 multiple choice
+ * answers. Once the user inputs his/her answer, the system immediatly reveals whether the answer
+ * was right or wrong, and if it was wrong, it would also reveal the right answer.
+ * We were also asked to create a UML for this project before starting, which is uploaded along with
+ * this file.
+ *           *           *           *           *           *           *           *           *
 */
 
 public class McqsQuestion {
@@ -116,7 +117,7 @@ public class McqsQuestion {
          * Which we then used to create the object of "mcq".
          */
         String question = "What is the color of the sky?";
-        String[] options = { "A) Persian Blue", "B) Majorelle blue", "C) Light teal" };
+        String[] options = { "A) Persian Blue", "B) Majorelle blue", "C) Light teal", "D) Neon Blue" };
         String correctAns = "C";
         McqsQuestion mcq = new McqsQuestion(question, options, correctAns);
 
@@ -149,13 +150,13 @@ public class McqsQuestion {
          * not equal to 0 anymore, breaking out of the while loop.
          */
         while (x == 0) { 
-            System.out.print("Write A, B, or C: ");
+            System.out.print("Write A, B, C, or D: ");
             userAns = scanner.nextLine().toUpperCase();
 
-            if (userAns.equals("A") || userAns.equals("B") || userAns.equals("C")) {
+            if (userAns.equals("A") || userAns.equals("B") || userAns.equals("C") ||  userAns.equals("D")){
                 x++;
             } else {
-                System.out.println("Invalid input. Please enter A, B, or C.");
+                System.out.println("Invalid input. Please enter A, B, C, or D.");
             }
         }
 
