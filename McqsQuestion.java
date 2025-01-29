@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays; // Added for array comparison
 
 public class McqsQuestion {
     // small research on how others have done this task before
@@ -8,7 +9,7 @@ public class McqsQuestion {
     // you can decide if the correct answers will show up at the end or as sonn aasthey enter
     // method to compare 
     // you can ask to enter abc or 123 or the actual answer 
-    // object of that mcq needs to run in the main
+    // object of that mcq needs to run in the main
 
     private String question;
     private String[] answer;
@@ -21,58 +22,44 @@ public class McqsQuestion {
     }
 
     /* --------------------------- getters and setters -------------------------- */
-    /**
-     * 
-     * @return
-     */
     public String getQuestion() {
-        return question; }
+        return question;
+    }
 
-    /**
-     * 
-     * @param question
-     */
     public void setQuestion(String question) {
-        this.question = question; }
+        this.question = question;
+    }
 
-    /**
-     * 
-     * @return
-     */
     public String[] getAnswer() {
-        return answer; }
+        return answer;
+    }
 
-    /**
-     * 
-     * @param answer
-     */
     public void setAnswer(String[] answer) {
-        this.answer = answer; }
+        this.answer = answer;
+    }
 
-    /**
-     * 
-     * @return
-     */
     public String getCorrectAnswer() {
-        return correctAnswer; }
+        return correctAnswer;
+    }
 
-    /**
-     * 
-     * @param correctAnswer
-     */
     public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer; }
+        this.correctAnswer = correctAnswer;
+    }
 
     /* -------------------------------- toString -------------------------------- */
     @Override
     public String toString(){
-        return question + "\n" + answer;
+        return question + "\n" + Arrays.toString(answer); // Fixed: Proper array printing
     }
+
     /* --------------------------------- equals --------------------------------- */
     public boolean equals(Object obj){
         if(obj instanceof McqsQuestion) {
             McqsQuestion other = (McqsQuestion)obj;
-            return this.question.equals(other.getQuestion()) && this.answer.equals(other.getAnswer()) && this.correctAnswer == other.getCorrectAnswer();
+            boolean isQuestionSame = this.question.equals(other.getQuestion());
+            boolean isAnswerSame = Arrays.equals(this.answer, other.getAnswer()); // Fixed: Proper array comparison
+            boolean isCorrectAnswerSame = this.correctAnswer.equals(other.getCorrectAnswer()); // Fixed: String comparison
+            return isQuestionSame && isAnswerSame && isCorrectAnswerSame;
         }
         return false;
     }
@@ -88,18 +75,16 @@ public class McqsQuestion {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print(mcq.getQuestion());
-        System.out.println(mcq.getAnswer());
+        System.out.println(Arrays.toString(mcq.getAnswer())); // Fixed: Proper array printing
         System.out.print("Write A, B, or C: ");
         String userAns = scanner.nextLine().toUpperCase();
         
-
-        if (userAns == mcq.getCorrectAnswer()){
+        if (userAns.equals(mcq.getCorrectAnswer())) { // Fixed: Proper string comparison
             System.out.println("YIPPIEEEE You got it!!");
         } else {
-            System.out.println("Nah, loser! The corect answer was "+ mcq.getCorrectAnswer());
+            System.out.println("Nah, loser! The correct answer was " + mcq.getCorrectAnswer());
         }
 
         scanner.close();
     }
-    
 }
