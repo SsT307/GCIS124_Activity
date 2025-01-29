@@ -103,14 +103,13 @@ public class McqsQuestion {
         }
         return false;
     }
-}
 
-/* ----------------------- creating the main function ----------------------- */
-/**
- * It displays the question, as well as the multiple choice options, and checks
- * the answer given by the user.
- */
-class Main {
+
+    /* ----------------------- creating the main function ----------------------- */
+    /*
+     * It displays the question, as well as the multiple choice options, and checks
+     * the answer given by the user.
+     */
     public static void main(String[] args) {
         /* 
          * We created the question, multiple choice answers, and set the correct answer.
@@ -118,7 +117,7 @@ class Main {
          */
         String question = "What is the color of the sky?";
         String[] options = { "A) Persian Blue", "B) Majorelle blue", "C) Light teal" };
-        String correctAns = "C"; // Make sure this matches the correct answer format
+        String correctAns = "C";
         McqsQuestion mcq = new McqsQuestion(question, options, correctAns);
 
         /* 
@@ -132,9 +131,23 @@ class Main {
         System.out.println(mcq.getQuestion());
         System.out.println(Arrays.toString(mcq.getAnswer())); 
 
+        /*
+         * Setting the values for the while loop and if statement !! (wow)
+         */
         int x = 0;
         String userAns = "";
 
+        /*
+         * The system first saves the String input given by the user into a variable, userAns,
+         * then checks if the user entered a valid choice (A, B, or C).
+         * If the user enters an invalid input, it will state that the given input is not an option
+         * and will ask the user to input their answer again.
+         * 
+         * Here the while loop is used as such that while the given variable, x, is 0, it will keep 
+         * asking the same question over and over again, it will only stop once the input matches one
+         * of the multiple choice values given, it does that by increasing the value of x, so it does
+         * not equal to 0 anymore, breaking out of the while loop.
+         */
         while (x == 0) { 
             System.out.print("Write A, B, or C: ");
             userAns = scanner.nextLine().toUpperCase();
@@ -147,24 +160,18 @@ class Main {
         }
 
         /*
-         * The system first saves the String input given by the user into a variable, userAns,
-         * then checks if the input from the user and the actual answer are equal using the
-         * method equals.
-         */
-        String wrongAns1 = "Nah, loser!";
-        String wrongAns2 = "The correct answer was " + mcq.getCorrectAnswer();
-
-        /*
-         * First, it checks if the user entered a valid choice (A, B, or C).
-         * If the input matches the correct answer, it prints a positive message(motivational!).
-         * If not, it prints the wrong answer message and reveals the correct answer.
+         * Now if the user did input one of the choices given, it would first check if the choice
+         * is equal to the correct answer using the equals method. If the user's answer is equal to
+         * the correct answer, it prints a positive message(motivational!). Now if the user picks
+         * the wrong answer, they would recieve a message indcating so, and would print the correct
+         * answer (inshallah they dont mess up again).
          */
         if (userAns.equals(mcq.getCorrectAnswer())) {
             System.out.println("YIPPIEEEE You got it!!");
         } else {
-            System.out.println(wrongAns1 + " " + wrongAns2);
+            System.out.println("Nah, loser! The correct answer was " + mcq.getCorrectAnswer());
         }
 
-        scanner.close();
+        scanner.close(); /* Closes the scanner I guess */
     }
 }
