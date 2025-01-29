@@ -131,30 +131,38 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println(mcq.getQuestion());
         System.out.println(Arrays.toString(mcq.getAnswer())); 
-        System.out.print("Write A, B, or C: ");
+
+        int x = 0;
+        String userAns = "";
+
+        while (x == 0) { 
+            System.out.print("Write A, B, or C: ");
+            userAns = scanner.nextLine().toUpperCase();
+
+            if (userAns.equals("A") || userAns.equals("B") || userAns.equals("C")) {
+                x++;
+            } else {
+                System.out.println("Invalid input. Please enter A, B, or C.");
+            }
+        }
 
         /*
          * The system first saves the String input given by the user into a variable, userAns,
          * then checks if the input from the user and the actual answer are equal using the
          * method equals.
          */
-        String userAns = scanner.nextLine().toUpperCase();
         String wrongAns1 = "Nah, loser!";
         String wrongAns2 = "The correct answer was " + mcq.getCorrectAnswer();
 
         /*
          * First, it checks if the user entered a valid choice (A, B, or C).
-         * If the input matches the correct answer, it prints a success message.
+         * If the input matches the correct answer, it prints a positive message(motivational!).
          * If not, it prints the wrong answer message and reveals the correct answer.
          */
-        if (userAns.equals("A") || userAns.equals("B") || userAns.equals("C")) {
-            if (userAns.equals(mcq.getCorrectAnswer())) {
-                System.out.println("YIPPIEEEE You got it!!");
-            } else {
-                System.out.println(wrongAns1 + " " + wrongAns2);
-            }
+        if (userAns.equals(mcq.getCorrectAnswer())) {
+            System.out.println("YIPPIEEEE You got it!!");
         } else {
-            System.out.println("Invalid input. Please enter A, B, or C");
+            System.out.println(wrongAns1 + " " + wrongAns2);
         }
 
         scanner.close();
