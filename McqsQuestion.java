@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 public class McqsQuestion {
     /* 
-     * First we had to initialize the memebers of our class which includes a String for the question,
+     * First we had to initialize the members of our class which includes a String for the question,
      * an array of strings for the answers, and a String that contains the right answer.
      */
     private String question;
@@ -34,7 +34,6 @@ public class McqsQuestion {
         this.correctAnswer = correctAnswer;
     }
 
-    
     /* --------------------------- getters and setters -------------------------- */
     /* We created a set of mutators and accessors because our members are private and
      * cannot be accessed without them.
@@ -54,7 +53,6 @@ public class McqsQuestion {
 
     /**
      * Gets an array of the answer options (strings)
-     * 
      * @return string input for array of answers
      */
     public String[] getAnswer() { return answer; }
@@ -77,7 +75,6 @@ public class McqsQuestion {
      */
     public void setCorrectAnswer(String correctAnswer) { this.correctAnswer = correctAnswer; }
 
-
     /* -------------------------------- toString -------------------------------- */
     /**
      * We wrote this to set up the area for the question followed by the multiple
@@ -90,7 +87,6 @@ public class McqsQuestion {
     }
 
     /* --------------------------------- equals --------------------------------- */
-
     /**
      * This compares if the user's input is equal to the correct answer, or in other
      * words, is correct.
@@ -101,18 +97,20 @@ public class McqsQuestion {
     public boolean equals(Object obj) {
         if (obj instanceof McqsQuestion) {
             McqsQuestion other = (McqsQuestion)obj;
-            return this.question.equals(other.getQuestion()) && Arrays.equals(this.answer, other.getAnswer()) && this.correctAnswer.equals(other.getCorrectAnswer());
+            return this.question.equals(other.getQuestion()) && 
+                   Arrays.equals(this.answer, other.getAnswer()) && 
+                   this.correctAnswer.equals(other.getCorrectAnswer());
         }
         return false;
     }
+}
 
-    /* ----------------------- creating the main function ----------------------- */
-    /**
-     * It displays the question, as well as the multiple choice options, and checks
-     * the answer given by the user.
-     * @param args
-     */
-public class Main {
+/* ----------------------- creating the main function ----------------------- */
+/**
+ * It displays the question, as well as the multiple choice options, and checks
+ * the answer given by the user.
+ */
+class Main {
     public static void main(String[] args) {
         /* 
          * We created the question, multiple choice answers, and set the correct answer.
@@ -120,7 +118,7 @@ public class Main {
          */
         String question = "What is the color of the sky?";
         String[] options = { "A) Persian Blue", "B) Majorelle blue", "C) Light teal" };
-        String correctAns = "C";
+        String correctAns = "C"; // Make sure this matches the correct answer format
         McqsQuestion mcq = new McqsQuestion(question, options, correctAns);
 
         /* 
@@ -131,7 +129,7 @@ public class Main {
          * it, the system was not able to compare the answer given and the actual answer.
          */
         Scanner scanner = new Scanner(System.in);
-        System.out.print(mcq.getQuestion());
+        System.out.println(mcq.getQuestion());
         System.out.println(Arrays.toString(mcq.getAnswer())); 
         System.out.print("Write A, B, or C: ");
 
@@ -144,10 +142,15 @@ public class Main {
         String wrongAns1 = "Nah, loser!";
         String wrongAns2 = "The correct answer was " + mcq.getCorrectAnswer();
 
+        /*
+         * First, it checks if the user entered a valid choice (A, B, or C).
+         * If the input matches the correct answer, it prints a success message.
+         * If not, it prints the wrong answer message and reveals the correct answer.
+         */
         if (userAns.equals("A") || userAns.equals("B") || userAns.equals("C")) {
             if (userAns.equals(mcq.getCorrectAnswer())) {
                 System.out.println("YIPPIEEEE You got it!!");
-            } else if (userAns.equals("B") || userAns.equals("C")) {
+            } else {
                 System.out.println(wrongAns1 + " " + wrongAns2);
             }
         } else {
@@ -155,6 +158,5 @@ public class Main {
         }
 
         scanner.close();
-    }
     }
 }
